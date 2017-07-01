@@ -1,0 +1,110 @@
+html,body{
+  height:100%;
+  margin:0;
+}
+body{
+  color:black;
+  background:url('https://cdn.glitch.com/0a6641bd-074a-40ab-8968-ea8a813f0b1d%2Fbooks-1655783_1280.jpg?1498457620805');
+  background-size:cover;
+  color:white;
+}
+.box{
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+section:hover{
+  box-shadow:0px 0px 5px white;
+}
+.card{
+  color:black;margin:0 auto;text-align:left;background-color:white;border-radius:3px;box-shadow:0px 0px 5px black;padding:15px;
+}
+body>.card{
+  margin:15px;
+}
+
+.book{
+  width:200px;
+  height:300px;
+  overflow-y:hidden;
+  border-radius:5px;
+  box-shadow:0px 0px 5px black;
+  margin:5px;
+  display:inline-block;
+  position:relative;
+}
+
+.book img{
+  width:100%;
+  height:100%
+}
+
+.remove,.request,.oinfo,.ybook,.response{
+  color:white;
+  background-color:#F44336;
+  padding:5px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.request{
+  background-color:#009688;
+}
+
+.request:hover{
+  transition:background-color .4s;
+  background-color:#00695C;
+}
+
+.remove:hover{
+  transition:background-color .4s;
+  background-color:#B71C1C;
+}
+
+.details{
+  box-shadow:0px 0px 3px black;
+  width:100%;
+  position:absolute;
+  bottom:-200px;
+  background-color:white;
+  transition:bottom .3s;
+}
+
+.book:hover .details{
+  bottom:0;
+}
+
+.badge{
+  cursor:pointer;
+}
+
+.rm,.rj{
+  background-color:red;
+}
+
+.ac{
+    background-color:#00E676;
+}
+
+.blink{
+  display:none;
+  animation:blink .3s linear 0s infinite alternate;
+}
+
+@keyframes blink{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+.modal{
+  color:black;
+}
+
+.response{
+  display:none;
+  position:absolute;
+  top:0px;
+  left:0px;
+  background-color:#009688;
+  width:100%;
+}
