@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book trade</title>
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <style>
+    .ybook{
+      cursor:auto;
+      background-color:#3F51B5;
+    }
+    .oinfo{
+      background-color:#EF6C00;
+    }
+    .oinfo:hover{
+      transition:background-color .4s;
+      background-color:#E65100;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-inverse" style="margin-bottom:0;flex:0 1 auto">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Book trade</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar" style="background-color:#222">
+          <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <% if(user){%>
+                <li class="active"><a href="#">All Books</a></li>
+                <li><a href="/my_books">My Books</a></li>
+                <li><a href="/your_trades">Your trades</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="#" id="sign-out">Sign out</a></li>
+              <%}else{%>
+                <li><a href="#" id="sign-in">Login with Twitter</a></li>
+              <%}%>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <%if(user){%>
+    <div class="card" style="position:relative;text-align:center">
+      <div class="response">a</div>
+          <h2>
+              All Books :
+          </h2><hr>
+        <%if(books.length==0){%>
+          No books added yet.
+        <%}else{
+          books.forEach(function(e){
+          %>
+        <div class="book">
+          <img src="<%=e.img%>"/>
+          <div class="details">
+            <div style="padding:10px;"><b>Title</b> : <%=e.title%>
+            <br><b>Author(s)</b> : <%=e.authors%></div>
+            <%if(e.user_id!=user.id){%>
+            <div class="request" uid="<%=e.user_id%>" bookid="<%=e.id%>">
+              Request
+            </div>
+            <div class="oinfo" oinfo="<%=e.user_info%>">
+              Owner Info
+            </div>
+            <%}else{%>
+            <div class="ybook">
+              Your Book
+            </div>
+            <%}%>
+          </div>
+        </div>
+        <%});}%>
+      </div>
+      
+      <div id="oinfo_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal">
+                &times
+              </button>
+              <h4 class="modal-title">
+                Owner Info
+              </h4>
+            </div>
+            <div class="modal-body">
+              a
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%}else{%>
+    <div class="card" style="text-align:center">Sign in to access this page</div>
+    <%}%>
+    <script src="/client.js"></script>
+    <script src="/all_books.js"></script>
+  </body>
+</html>

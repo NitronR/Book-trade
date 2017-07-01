@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book trade</title>
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+      .row{
+        margin:5px;
+        font-size:20px;
+      }
+      .col-sm-3{
+        text-align:right;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse" style="margin-bottom:0;flex:0 1 auto">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Book trade</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar" style="background-color:#222">
+          <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <% if(user){%>
+                <li><a href="/all_books">All Books</a></li>
+                <li><a href="/my_books">My Books</a></li>
+                <li><a href="/your_trades">Your trades</a></li>
+                <li class="active"><a href="#">Settings</a></li>
+                <li><a href="#" id="sign-out">Sign out</a></li>
+              <%}else{%>
+                <li><a href="#" id="sign-in">Login with Twitter</a></li>
+              <%}%>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <%if(user){%>
+      <div class="card" style="text-align:center;position:relative;">
+        <div class="response">a</div>
+            <h2>
+                Settings
+            </h2><hr>
+          <div class="row">
+            <div class="col-sm-3">Full name :</div>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="full_name" value="<%=info.full_name%>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">City : </div>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="city" value="<%=info.city%>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">State : </div>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="state" value="<%=info.state%>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">Country :</div>
+            <div class="col-sm-8">
+            <input type="text" class="form-control" id="country" value="<%=info.country%>">
+            </div>
+          </div>
+        <center>
+            <button class="btn btn-primary" id="save">Save settings</button>
+        </center>
+      </div>
+    </div>
+    <%}else{%>
+    <div class="card" style="text-align:center">Sign in to access this page</div>
+    <%}%>
+  </div>
+    <script src="/client.js"></script>
+    <script src="/all_books.js"></script>
+  </body>
+</html>

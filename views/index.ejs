@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book trade</title>
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="box">
+      <nav class="navbar navbar-inverse" style="margin-bottom:0;flex:0 1 auto">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Book trade</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbar" style="background-color:#222">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <% if(user){%>
+                <li><a href="/all_books">All Books</a></li>
+                <li><a href="/my_books">My Books</a></li>
+                <li><a href="/your_trades">Your trades</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="#" id="sign-out">Sign out</a></li>
+              <%}else{%>
+                <li><a href="#" id="sign-in">Login with Twitter</a></li>
+              <%}%>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <section style="background-color:#0D47A1;flex:0 1 auto;text-align:center;padding:30px;font-size:20px">
+         <div style="font-size:40px;">
+            Book Trade
+          </div>
+          Have fun trading and reading!!
+      </section>
+      <section style="padding:20px;padding-top:100px;flex:1 1 auto;position:relative;font-size:25px;color:black;background:url('https://cdn.glitch.com/0a6641bd-074a-40ab-8968-ea8a813f0b1d%2Fbooks-1655783_1280.jpg?1498457620805')">
+        
+          <div class="card" style="width:50vmax;opacity:0.9">
+            <center>Easily trade books by using this app. You can :</center><hr style="border-color:black">
+            <ul style="font-size:20px;">
+              <li>View all books available for trade</li>
+              <li>Propose trades</li>
+              <li>Wait for the response</li>
+              <li>If accepted, happy trading!!</li>
+            </ul>
+          </div>
+      </section>
+    </div>
+    
+    <script src="/client.js"></script>
+  </body>
+</html>

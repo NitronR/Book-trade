@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book trade</title>
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+      .label-info{
+        cursor:pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse" style="margin-bottom:0;flex:0 1 auto">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Book trade</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbar" style="background-color:#222">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <% if(user){%>
+                <li><a href="/all_books">All Books</a></li>
+                <li><a href="/my_books">My Books</a></li>
+                <li class="active"><a href="#">Your trades</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="#" id="sign-out">Sign out</a></li>
+              <%}else{%>
+                <li><a href="#" id="sign-in">Login with Twitter</a></li>
+              <%}%>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <%if(user){%>
+    <div class="card">
+      <h2>
+        Your trades
+      </h2><hr>
+      <h3>
+        You requested
+      </h3>
+      <%if(requested.length==0){%>
+        You requested no books.
+      <%}else{%>
+      <span id="reqd"></span>
+        <ul class="list-group">
+          <% requested.forEach(function(e){%>
+            <li class="list-group-item">
+              <span class="label label-<%=statuses[e.status]%>"><%=e.status%></span> <%=e.title%>
+              <%if(e.status=="approved"){%>
+              <span class="label label-info" data="<%=e.msg%>">Click for info</span>
+              <%}%>
+              <span class="rm badge" uid="<%=e.uid%>" bookid="<%=e.bookid%>">&times</span></li>
+          <%});%>
+        </ul>
+      <%}%>
+      <h3>
+        Requests for you
+      </h3>
+      <%if(requests.length==0){%>
+        There are no requests for you.
+      <%}else{%>
+      <span id="req"></span>
+        <ul class="list-group">
+          <% requests.forEach(function(e){%>
+            <li class="list-group-item" uid="<%=e.uid%>" bookid="<%=e.bookid%>"><%=e.title%><span data="rj" class="rj badge">&times</span><span data="ac" class="ac badge">&#10004</span></li>
+          <%});%>
+        </ul>
+      <%}%>
+    </div>
+    
+    <div id="accept_modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times
+            </button>
+            <h4 class="modal-title">
+              Enter message
+            </h4>
+          </div>
+          <div class="modal-body">
+            Enter a message to send to the request maker. (Message may contain info like contact info, where/ how to trade etc.):
+            <input type="text" id="msg" class="form-control">
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal">
+              Cancel
+            </button>
+            <button class="btn btn-primary" id="accept" data-dismiss="modal">
+              Accept
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="display_modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times
+            </button>
+            <h4 class="modal-title">
+              Trader info
+            </h4>
+          </div>
+          <div class="modal-body">
+            
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <%}else{%>
+    <div class="card" style="text-align:center">Sign in to access this page</div>
+    <%}%>
+    <script src="/client.js"></script>
+    <script src="/your_trades.js"></script>
+  </body>
+</html>
